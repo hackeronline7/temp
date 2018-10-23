@@ -328,7 +328,21 @@ def segmentation(img_path = 'sample.jpg', K = 5):
    
     plt.imshow(res2)
     plt.show()
-    
+
+    def color_segment():
+        img = cv2.imread("59.png")
+        img_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        img_hsv = cv2.cvtColor(img_rgb,cv2.COLOR_RGB2HSV)
+        color_range_up=np.array([1, 190, 200])
+        color_range_down=np.array([18, 255, 255])
+        
+        light_orange = (1, 190, 200)
+        dark_orange = (18, 255, 255)
+        
+        mask = cv2.inRange(img_hsv,color_range_up,color_range_down)
+        result = cv2.bitwise_and(img_rgb,img_rgb, mask=mask)
+        
+        plt.imshow(result) 
     
     
     
